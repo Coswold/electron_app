@@ -2,6 +2,12 @@ const electron = require('electron')
 
 const { app, BrowserWindow } = require('electron')
 
+require('electron-handlebars')({
+  // Template bindings go here!
+  title: 'Experiment',
+  body: 'The quick brown fox jumps over the lazy dog.',
+});
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let win
