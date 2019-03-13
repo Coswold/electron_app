@@ -13,6 +13,7 @@
     "electron": "^4.0.5"
   },
   "dependencies": {
-    "electron-handlebars": "^2.0.0"
+    "electron-handlebars": "^2.0.0",
+    "nes.css": "^2.1.0"
   }
 }
