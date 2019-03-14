@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Books!</title>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+  </head>
+  <body>
+      <!-- Sidebar -->
+        <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+          <p class="w3-bar-item">RoboLib</p>
+          <a href="book_list.html" class="nes-btn is-primary centered_buttons">Book List</a>
+          <a href="add.html" class="nes-btn is-primary centered_buttons">Add Book</a>
+          <a href="#" class="nes-btn is-primary centered_buttons">Query</a>
+          <!-- Dialog -->
+          <section class="centered_buttons help">
+            <button type="button" class="nes-btn is-error" onclick="document.getElementById('dialog-default').showModal();">
+              Help
+            </button>
+            <dialog class="nes-dialog" id="dialog-default">
+              <form method="dialog">
+                <p class="title">Help</p>
+                <p>By submitting, this data will be saved on your machine
+                in a JSON file.</p>
+                <menu class="dialog-menu">
+                  <button class="nes-btn is-primary">Okay</button>
+                </menu>
+              </form>
+            </dialog>
+          </section>
+      </div>
+        </div>
+
+      <div class="outline">
+
+      </div>
+
+  </body>
+</html>

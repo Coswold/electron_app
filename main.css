@@ -3,6 +3,18 @@ html, body, pre, code, kbd, samp {
 }
 
 .outline {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 5%;
+  padding-left: 30%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.centered_buttons {
+    display: flex;
+    justify-content: center;
+    justify-content: bottom;
+}
+
+.help {
+    padding-top: 100%;
 }

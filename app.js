@@ -31,5 +31,6 @@ app.on('ready', function() {
     store.set('windowBounds', { width, height });
   });
 
-  mainWindow.loadURL('file://' + path.join(__dirname, 'index.html'));
+  mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
+  mainWindow.webContents.openDevTools()
 });
