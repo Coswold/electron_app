@@ -2,15 +2,48 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Electron!</title>
+    <title>Books!</title>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="main.css">
   </head>
   <body>
-    <h1>Testing</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+      <div class="nes-container with-title outline">
+         <p class="title">Book List</p>
 
+         <p>Good morning. Thou hast had a good night's sleep, I hope.</p>
+
+         <div class="nes-field">
+           <label for="name_field">Book Title</label>
+           <input type="text" id="title" class="nes-input">
+         </div>
+
+         <label for="genre">Genre</label>
+        <div class="nes-select">
+          <select required id="genre">
+            <option value="" disabled selected hidden>Select...</option>
+            <option value="sci-fi">Science Fiction</option>
+            <option value="fantasy">Fantasy</option>
+          </select>
+        </div>
+
+        <!-- Dialog -->
+        <section>
+          <button type="button" class="nes-btn is-primary" onclick="document.getElementById('dialog-default').showModal();">
+            Open dialog
+          </button>
+          <dialog class="nes-dialog" id="dialog-default">
+            <form method="dialog">
+              <p class="title">Dialog</p>
+              <p>Alert: this is a dialog.</p>
+              <menu class="dialog-menu">
+                <button class="nes-btn">Cancel</button>
+                <button class="nes-btn is-primary">Confirm</button>
+              </menu>
+            </form>
+          </dialog>
+        </section>
+
+      </div>
+  </body>
 </html>
