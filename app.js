@@ -1,6 +1,7 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const Store = require('./store.js');
+const {ipcMain} = require('electron')
 let mainWindow; //do this so that the window object doesn't get GC'd
 
 // First instantiate the class
@@ -41,14 +42,23 @@ app.on('ready', function() {
   // First we'll get our height and width. This will be the defaults if there wasn't anything saved
   let { width, height } = store.get('windowBounds');
 
+  /*
   const book = {
       title: "stuff",
       author: 'guy'
   }
   bookStore.add(book)
+  */
 
   // Pass those values in to the BrowserWindow options
   mainWindow = new BrowserWindow({ width, height });
+
+  // add-todo from add todo window
+  ipcMain.on('addBook', (event, book) => {
+    const updatedBooks = bookStore.add(book)
+
+    mainWindow.send('todos', updatedTodos)
+  })
 
   // The BrowserWindow class extends the node.js core EventEmitter class, so we use that API
   // to listen to events on the BrowserWindow. The resize event is emitted when the window size changes.
