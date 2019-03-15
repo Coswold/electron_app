@@ -20,7 +20,6 @@ class Store {
 
   add(book) {
       const books = [ ...this.get('books'), book ]
-      this.data['books'].push(book)
       console.log(book);
 
       fs.writeFileSync(this.path, JSON.stringify(books));
