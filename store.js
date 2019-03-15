@@ -18,6 +18,14 @@ class Store {
     return this.data[key];
   }
 
+  add(book) {
+      const books = [ ...this.get('books'), book ]
+      this.data['books'].push(book)
+      console.log(book);
+
+      fs.writeFileSync(this.path, JSON.stringify(books));
+  }
+
   // ...and this will set it
   set(key, val) {
     this.data[key] = val;

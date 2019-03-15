@@ -13,10 +13,39 @@ const store = new Store({
   }
 });
 
+const bookStore = new Store({
+  // We'll call our data file 'user-preferences'
+  configName: 'books',
+  defaults: {
+    books: []
+  }
+});
+
+/*
+const getBooks = () => {
+    return JSON.parse(mainWindow.localStorage.getItem('books')) || []
+}
+
+const addBook = (book) => {
+    const books = [ ...getBooks(), book ]
+
+    mainWindow.localStorage.setItem('books', JSON.stringify(books))
+    console.log(books)
+
+    return books
+}
+*/
+
 // When our app is ready, we'll create our BrowserWindow
 app.on('ready', function() {
   // First we'll get our height and width. This will be the defaults if there wasn't anything saved
   let { width, height } = store.get('windowBounds');
+
+  const book = {
+      title: "stuff",
+      author: 'guy'
+  }
+  bookStore.add(book)
 
   // Pass those values in to the BrowserWindow options
   mainWindow = new BrowserWindow({ width, height });
