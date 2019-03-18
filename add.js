@@ -6,6 +6,8 @@ document.getElementById('bookForm').addEventListener('submit', (evt) => {
   // prevent default refresh functionality of forms
   evt.preventDefault()
 
+  console.log('Submit form!!!!!!')
+
   // input on the form
   const input = evt.target[0]
 

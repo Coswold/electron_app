@@ -57,7 +57,7 @@ app.on('ready', function() {
   ipcMain.on('addBook', (event, book) => {
     const updatedBooks = bookStore.add(book)
 
-    mainWindow.send('todos', updatedTodos)
+    mainWindow.send('book_list', updatedBooks)
   })
 
   // The BrowserWindow class extends the node.js core EventEmitter class, so we use that API

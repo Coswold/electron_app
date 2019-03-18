@@ -19,8 +19,11 @@ class Store {
   }
 
   add(book) {
-      const books = [ ...this.get('books'), book ]
-      console.log(book);
+      console.log(this)
+      const books = this.get('books')
+      console.log(books);
+      books.push(book);
+
 
       fs.writeFileSync(this.path, JSON.stringify(books));
   }
