@@ -8,11 +8,19 @@ document.getElementById('bookForm').addEventListener('submit', (evt) => {
 
   console.log('Submit form!!!!!!')
 
-  // input on the form
-  const input = evt.target[0]
+  console.log(evt.target[1].value)
 
-  // send todo to main process
-  ipcRenderer.send('addBook', input.value)
+  // input on the form
+  const input = {
+      'title': evt.target[0].value,
+      'author': evt.target[1].value,
+      'genre': evt.target[2].value,
+      'owned': evt.target[3].value,
+      'url': evt.target[5].value,
+  }
+
+  // send book to main process
+  ipcRenderer.send('addBook', input)
 
   // reset input
   input.value = ''
