@@ -22,33 +22,11 @@ const bookStore = new Store({
   }
 });
 
-/*
-const getBooks = () => {
-    return JSON.parse(mainWindow.localStorage.getItem('books')) || []
-}
-
-const addBook = (book) => {
-    const books = [ ...getBooks(), book ]
-
-    mainWindow.localStorage.setItem('books', JSON.stringify(books))
-    console.log(books)
-
-    return books
-}
-*/
 
 // When our app is ready, we'll create our BrowserWindow
 app.on('ready', function() {
   // First we'll get our height and width. This will be the defaults if there wasn't anything saved
   let { width, height } = store.get('windowBounds');
-
-  /*
-  const book = {
-      title: "stuff",
-      author: 'guy'
-  }
-  bookStore.add(book)
-  */
 
   // Pass those values in to the BrowserWindow options
   mainWindow = new BrowserWindow({ width, height });
@@ -58,7 +36,8 @@ app.on('ready', function() {
       console.log("this should be book object: " + book)
       bookStore.add('books', book)
 
-      mainWindow.send('book_list', bookStore.books)
+      // mainWindow.send('book_list', bookStore.get('books'));
+      mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
   })
 
   // The BrowserWindow class extends the node.js core EventEmitter class, so we use that API
