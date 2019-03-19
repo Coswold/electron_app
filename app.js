@@ -55,9 +55,10 @@ app.on('ready', function() {
 
   // add-todo from add todo window
   ipcMain.on('addBook', (event, book) => {
-    const updatedBooks = bookStore.add(book)
+      console.log("this should be book object: " + book)
+      bookStore.add('books', book)
 
-    mainWindow.send('book_list', updatedBooks)
+      mainWindow.send('book_list', bookStore.books)
   })
 
   // The BrowserWindow class extends the node.js core EventEmitter class, so we use that API

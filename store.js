@@ -18,14 +18,31 @@ class Store {
     return this.data[key];
   }
 
-  add(book) {
-      console.log(this)
+/*
+{
+    meta: {
+            owner: 'Me',
+            startDate: '03/14/19',
+            updatedDate: '03/18/19'
+},
+    books: [
+        { title: 'War and Peace', author: 'Tolstoy' },
+        { title: 'The cat in the Hat', author: 'Suess'}
+    ]
+}
+*/
+
+  add(key, val) {
+      console.log(this.data[key])
+      this.data[key].push(val)
+
+      /*
       const books = this.get('books')
       console.log(books);
       books.push(book);
+      */
 
-
-      fs.writeFileSync(this.path, JSON.stringify(books));
+      fs.writeFileSync(this.path, JSON.stringify(this.data));
   }
 
   // ...and this will set it
