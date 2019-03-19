@@ -36,8 +36,8 @@ app.on('ready', function() {
       console.log("this should be book object: " + book)
       bookStore.add('books', book)
 
-      // mainWindow.send('book_list', bookStore.get('books'));
-      mainWindow.send(bookStore.get('books'));
+      // mainWindow.send(bookStore.get('books'));
+
       mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
   })
 
