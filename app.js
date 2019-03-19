@@ -4,6 +4,7 @@ const Store = require('./store.js');
 const {ipcMain} = require('electron')
 let mainWindow; //do this so that the window object doesn't get GC'd
 
+
 // First instantiate the class
 const store = new Store({
   // We'll call our data file 'user-preferences'
@@ -22,7 +23,6 @@ const bookStore = new Store({
   }
 });
 
-
 // When our app is ready, we'll create our BrowserWindow
 app.on('ready', function() {
   // First we'll get our height and width. This will be the defaults if there wasn't anything saved
@@ -37,6 +37,7 @@ app.on('ready', function() {
       bookStore.add('books', book)
 
       // mainWindow.send('book_list', bookStore.get('books'));
+      mainWindow.send(bookStore.get('books'));
       mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
   })
 
@@ -50,6 +51,6 @@ app.on('ready', function() {
     store.set('windowBounds', { width, height });
   });
 
-  mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
+  mainWindow.loadURL('file://' + path.join(__dirname, 'views/splash.html'));
   mainWindow.webContents.openDevTools()
 });
