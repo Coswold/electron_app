@@ -27,11 +27,11 @@ const bookStore = new Store({
 app.on('ready', function() {
   // First we'll get our height and width. This will be the defaults if there wasn't anything saved
   let { width, height } = store.get('windowBounds');
-
+  
   // Pass those values in to the BrowserWindow options
   mainWindow = new BrowserWindow({ width, height });
 
-  // add-todo from add todo window
+  // add book
   ipcMain.on('addBook', (event, book) => {
       console.log("this should be book object: " + book)
       bookStore.add('books', book)
