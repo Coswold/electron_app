@@ -27,17 +27,30 @@ const bookStore = new Store({
 app.on('ready', function() {
   // First we'll get our height and width. This will be the defaults if there wasn't anything saved
   let { width, height } = store.get('windowBounds');
-  
+
   // Pass those values in to the BrowserWindow options
   mainWindow = new BrowserWindow({ width, height });
 
+  mainWindow.loadFile(path.join('render', 'index.html'));
+
+  mainWindow.once('show', () => {
+      console.log("show some BOOOOOKS!")
+      let books = bookStore.get('books')
+      mainWindow.send('displayBook', books)
+  });
+
+  // delete book
+  ipcMain.on('delete-book', (event, book) => {
+    const updatedBooks = bookStore.delete(book)
+
+    mainWindow.send('displayBook', updatedBooks)
+  })
+
   // add book
   ipcMain.on('addBook', (event, book) => {
-      console.log("this should be book object: " + book)
       bookStore.add('books', book)
-
-      // mainWindow.send(bookStore.get('books'));
-
+      const updatedBooks = bookStore.get('books')
+      mainWindow.send('displayBook', updatedBooks);
       mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
   })
 

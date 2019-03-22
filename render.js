@@ -1,22 +1,31 @@
-const Store = require('./store.js');
+'use strict'
 
-const bookStore = new Store({
-  // We'll call our data file 'user-preferences'
-  configName: 'books',
-  defaults: {
-    books: []
-  }
-});
+const { ipcRenderer } = require('electron');
 
-let books = bookStore.get('books');
-
-const bL = document.getElementById('bookList')
-
-const bookItems = ``
-// create html string
-for (i = 0; i < books.length; i++) {
-    bookItems += `<li class="todo-item">${books[i]}</li>`
+// delete todo by its text value ( used below in event listener)
+const deleteBook = (e) => {
+  ipcRenderer.send('delete-book', e.target.textContent)
 }
 
-// set list html to the todo items
-bL.innerHTML = bookItems
+// on receive todos
+ipcRenderer.on('displayBook', (event, books) => {
+    console.log("render books" + books)
+    // get the todoList ul
+    const bookList = document.getElementById('bookList')
+    console.log("html: " + bookList)
+
+    // create html string
+    const bookItems = books.reduce((html, book) => {
+        html += `<li class="book-item">${book}</li>`
+
+        return html
+    }, '');
+
+    // set list html to the todo items
+    bookList.innerHTML = bookItems
+
+    // add click handlers to delete the clicked todo
+    bookList.querySelectorAll('.book-item').forEach(item => {
+        item.addEventListener('click', deleteBook)
+    })
+})

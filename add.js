@@ -20,7 +20,7 @@ document.getElementById('bookForm').addEventListener('submit', (evt) => {
   }
 
   // send book to main process
-  ipcRenderer.send('addBook', input)
+  ipcRenderer.send('addBook', input);
 
   // reset input
   input.value = ''

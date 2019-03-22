@@ -19,7 +19,6 @@ class Store {
   }
 
   add(key, val) {
-      console.log(this.data[key])
       this.data[key].push(val)
 
       fs.writeFileSync(this.path, JSON.stringify(this.data));
