@@ -15,8 +15,10 @@
   "dependencies": {
     "@trodi/electron-splashscreen": "^0.3.4",
     "electron-handlebars": "^2.0.0",
+    "electron-reload": "^1.4.0",
     "electron-splashscreen": "^0.1.7",
     "electron-store": "^2.0.0",
-    "nes.css": "^2.1.0"
+    "nes.css": "^2.1.0",
+    "path": "^0.12.7"
   }
 }

@@ -7,7 +7,7 @@ const deleteBook = (e) => {
   ipcRenderer.send('delete-book', e.target.textContent)
 }
 
-// on receive todos
+// on receive books
 ipcRenderer.on('displayBook', (event, books) => {
     console.log("render books" + books)
     // get the todoList ul
@@ -16,7 +16,7 @@ ipcRenderer.on('displayBook', (event, books) => {
 
     // create html string
     const bookItems = books.reduce((html, book) => {
-        html += `<li class="book-item">${book}</li>`
+        html += `<li class="book-item">${book.title} ${book.author}</li>`
 
         return html
     }, '');
