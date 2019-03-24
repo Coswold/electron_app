@@ -45,8 +45,8 @@ app.on('ready', function() {
     // delete book
     ipcMain.on('changePage', (event, file) => {
         books = bookStore.get('books');
-        mainWindow.webContents.send('displayBook', books);
         mainWindow.loadURL('file://' + path.join(__dirname, 'views/' + file + '.html'));
+        mainWindow.webContents.send('displayBook', books);
     })
 
     // delete book

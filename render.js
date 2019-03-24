@@ -16,7 +16,11 @@ ipcRenderer.on('displayBook', (event, books) => {
 
     // create html string
     const bookItems = books.reduce((html, book) => {
-        html += `<li class="book-item">${book.title} ${book.author}</li>`
+        html += `<tr>
+          <td>${book.title}</td>
+          <td>${book.author}</td>
+          <td>Thou hast had a good evening</td>
+          <td>Thou hast had a good night</td>`
 
         return html
     }, '');
