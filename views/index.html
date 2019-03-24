@@ -12,11 +12,13 @@
       <!-- Sidebar -->
         <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
           <p class="w3-bar-item">RoboLib</p>
-          <a href="index.html" class="nes-btn is-primary centered_buttons">Book List</a>
-          <br>
-          <a href="add.html" class="nes-btn is-primary centered_buttons">Add Book</a>
-          <br>
-          <a href="query.html" class="nes-btn is-primary centered_buttons">Query</a>
+          <section class="nav">
+              <button value="index" onclick="changePath(this.value)" class="nes-btn is-primary">Book List</button>
+              <br>
+              <button value="add" onclick="changePath(this.value)" class="nes-btn is-primary">Add Book</button>
+              <br>
+              <button value="query" onclick="changePath(this.value)" class="nes-btn is-primary">Query</button>
+          </section>
           <!-- Dialog -->
           <section class="centered_buttons help">
             <button type="button" class="nes-btn is-error" onclick="document.getElementById('dialog-default').showModal();">
@@ -40,5 +42,11 @@
         </div>
 
         <script src="../render.js"></script>
+        <script>
+        function changePath(file){
+            console.log(file);
+            ipcRenderer.send('changePage', file);
+        }
+        </script>
   </body>
 </html>

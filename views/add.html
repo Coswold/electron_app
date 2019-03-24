@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Books!</title>
+    <title>Add!</title>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
     <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -12,11 +12,13 @@
       <!-- Sidebar -->
         <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
           <p class="w3-bar-item">RoboLib</p>
-          <a href="index.html" class="nes-btn is-primary centered_buttons">Book List</a>
-          <br>
-          <a href="add.html" class="nes-btn is-primary centered_buttons">Add Book</a>
-          <br>
-          <a href="query.html" class="nes-btn is-primary centered_buttons">Query</a>
+          <section class="nav">
+              <button value="index" onclick="changePath(this.value)" class="nes-btn is-primary">Book List</button>
+              <br>
+              <button value="add" onclick="changePath(this.value)" class="nes-btn is-primary">Add Book</button>
+              <br>
+              <button value="query" onclick="changePath(this.value)" class="nes-btn is-primary">Query</button>
+          </section>
           <!-- Dialog -->
           <section class="centered_buttons help">
             <button type="button" class="nes-btn is-error" onclick="document.getElementById('dialog-default').showModal();">
@@ -91,6 +93,13 @@
       </div>
 
       <script src="../add.js"></script>
+
+      <script>
+      function changePath(file){
+          console.log(file);
+          ipcRenderer.send('changePage', file);
+      }
+      </script>
 
   </body>
 </html>

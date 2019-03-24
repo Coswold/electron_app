@@ -1,11 +1,10 @@
-const { app } = require('electron');
+const { app, Tray } = require('electron');
 const path = require('path');
 const Store = require('./store.js');
 const {ipcMain} = require('electron');
 const Window = require('./Window');
 let mainWindow; //do this so that the window object doesn't get GC'd
 require('electron-reload')(__dirname);
-
 
 // First instantiate the class
 const store = new Store({
@@ -30,30 +29,38 @@ let books = []
 app.on('ready', function() {
     // First we'll get our height and width. This will be the defaults if there wasn't anything saved
     let { width, height } = store.get('windowBounds');
+    const appIcon = new Tray('images/logo.png');
 
     mainWindow = new Window({
         file: path.join('views', 'index.html'),
         windowSettings: { width, height },
-        show: false
+        icon: 'images/logo.png'
     });
 
-    mainWindow.once('show', () => {
+    mainWindow.on('show', () => {
         books = bookStore.get('books');
         mainWindow.webContents.send('displayBook', books);
     });
 
     // delete book
+    ipcMain.on('changePage', (event, file) => {
+        books = bookStore.get('books');
+        mainWindow.webContents.send('displayBook', books);
+        mainWindow.loadURL('file://' + path.join(__dirname, 'views/' + file + '.html'));
+    })
+
+    // delete book
     ipcMain.on('deleteBook', (event, book) => {
         const updatedBooks = bookStore.delete(book);
 
-        mainWindow.send('displayBook', updatedBooks);
+        mainWindow.webContents.send('displayBook', updatedBooks);
         mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
     })
 
     // add book
     ipcMain.on('addBook', (event, book) => {
-        bookStore.add('books', book)
-        const updatedBooks = bookStore.get('books')
+        bookStore.add('books', book);
+        const updatedBooks = bookStore.get('books');
         mainWindow.send('displayBook', updatedBooks);
         mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
     })
