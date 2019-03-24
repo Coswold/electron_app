@@ -4,7 +4,7 @@ const { ipcRenderer } = require('electron');
 
 // delete todo by its text value ( used below in event listener)
 const deleteBook = (e) => {
-  ipcRenderer.send('delete-book', e.target.textContent)
+    ipcRenderer.send('delete-book', e.target.textContent);
 }
 
 // on receive books
@@ -17,10 +17,10 @@ ipcRenderer.on('displayBook', (event, books) => {
     // create html string
     const bookItems = books.reduce((html, book) => {
         html += `<tr>
-          <td>${book.title}</td>
+          <td class="book-item">${book.title}</td>
           <td>${book.author}</td>
           <td>Thou hast had a good evening</td>
-          <td>Thou hast had a good night</td>`
+          <td>Thou hast had a good night</td></tr>`
 
         return html
     }, '');

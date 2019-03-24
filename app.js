@@ -37,10 +37,11 @@ app.on('ready', function() {
         icon: 'images/logo.png'
     });
 
-    mainWindow.on('show', () => {
+    mainWindow.webContents.on('did-finish-load', (event, url) => {
+        event.preventDefault()
         books = bookStore.get('books');
         mainWindow.webContents.send('displayBook', books);
-    });
+    })
 
     // delete book
     ipcMain.on('changePage', (event, file) => {
@@ -52,16 +53,12 @@ app.on('ready', function() {
     // delete book
     ipcMain.on('deleteBook', (event, book) => {
         const updatedBooks = bookStore.delete(book);
-
         mainWindow.webContents.send('displayBook', updatedBooks);
-        mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
     })
 
     // add book
     ipcMain.on('addBook', (event, book) => {
         bookStore.add('books', book);
-        const updatedBooks = bookStore.get('books');
-        mainWindow.send('displayBook', updatedBooks);
         mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
     })
 
@@ -75,5 +72,5 @@ app.on('ready', function() {
         store.set('windowBounds', { width, height });
     });
 
-    mainWindow.loadURL('file://' + path.join(__dirname, 'views/index.html'));
+    mainWindow.loadURL('file://' + path.join(__dirname, 'views/splash.html'));
 });
