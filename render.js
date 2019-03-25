@@ -19,8 +19,8 @@ ipcRenderer.on('displayBook', (event, books) => {
         html += `<tr>
           <td class="book-item">${book.title}</td>
           <td>${book.author}</td>
-          <td>Thou hast had a good evening</td>
-          <td>Thou hast had a good night</td></tr>`
+          <td>${book.genre}</td>
+          <td>${book.url}</td></tr>`
 
         return html
     }, '');
