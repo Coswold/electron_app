@@ -2,7 +2,7 @@
 
 const { ipcRenderer } = require('electron');
 
-// delete todo by its text value ( used below in event listener)
+// delete book by its text value ( used below in event listener)
 const deleteBook = (e) => {
     ipcRenderer.send('delete-book', e.target.textContent);
 }
